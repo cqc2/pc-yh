@@ -57,6 +57,6 @@ A = cov(data);
 [~,idx] = min(diag(LAMBDA));
 % Normalize
 V = V(:,idx)./norm(V(:,idx));
-V = [mean(data(:,1:3))';V];
+V = [mean(data)';V];
 % Assemble the VARARGOUT cell array
 end % MAIN
