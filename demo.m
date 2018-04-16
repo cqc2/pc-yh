@@ -7,6 +7,7 @@ function demo(pcdFilePathOrData,minH,maxH,interval)
 %
 % mail : mailboxchen@foxmail.com
 % Copyright (C) 2015 - 2018  Chen Qichao
+% 2018.04.16
 
 if size(minH,2)>1
     for i=1:2:size(minH,2)
@@ -19,14 +20,14 @@ end
 
 function process(pcdFilePathOrData,minH,maxH,interval)
 %
-
 %参数设置
 gridesize = 0.1;%格网大小,建议0.05或者0.1
-denseLimit = 3000;%投影密度，
-sigma  = 5;
+denseLimit = 3000;%投影密度
+sigma  = 5;%滤波参数
 para = 0.5;
 lLimit = 1;%长度阈值，滤除较小的点云聚落
-cdist = 0.3;
+cdist = 0.3;%聚类距离
+
 % 判断输入的是文件路径还是点云矩阵
 [row,col] = size(pcdFilePathOrData);
 if row>1&&col>=4
