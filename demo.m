@@ -1,6 +1,13 @@
 function demo(pcdFilePathOrData,minH,maxH,interval)
 %
-%如果是las格式，请先用Terrasolid转成xyzi文本格式
+%
+% 
+% The program is written by Chen Qichao. You can redistribute or modify the
+% program for any properties.
+%
+% mail : mailboxchen@foxmail.com
+% Copyright (C) 2015 - 2018  Chen Qichao
+
 if size(minH,2)>1
     for i=1:2:size(minH,2)
         process(pcdFilePathOrData,minH(i),minH(i+1));
@@ -8,7 +15,6 @@ if size(minH,2)>1
 else
     demo(pcdFilePathOrData,minH,maxH,interval);
 end
-
 end
 
 function process(pcdFilePathOrData,minH,maxH,interval)
