@@ -47,7 +47,7 @@ if isempty(data)
     V = [0 0 0 0 0 0]';
     return;
 end
-
+data = data(:,1:3);
 % Compute the MxM covariance matrix A
 A = cov(data);
 % Compute the eigenvector of A

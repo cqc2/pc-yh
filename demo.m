@@ -73,7 +73,7 @@ outMmesh(outMmesh>0)= 1;
 [row,col] = find(outMmesh>0);
 index = clustereuclid([row col],ceil(cdist/gridSize));
 nc = unique(index);
-cluster = struct([]);
+cluster = struct([]);%注意结构体初始化
 for i=1:size(nc,1)
     tmpx = col(index==i);
     tmpy = row(index==i);
