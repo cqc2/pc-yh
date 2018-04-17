@@ -14,7 +14,7 @@ if size(minH,2)>1
         process(pcdFilePathOrData,minH(i),minH(i+1));
     end
 else
-    demo(pcdFilePathOrData,minH,maxH,interval);
+    process(pcdFilePathOrData,minH,maxH,interval);
 end
 end
 
@@ -73,6 +73,7 @@ outMmesh(outMmesh>0)= 1;
 [row,col] = find(outMmesh>0);
 index = clustereuclid([row col],ceil(cdist/gridSize));
 nc = unique(index);
+cluster = struct([]);
 for i=1:size(nc,1)
     tmpx = col(index==i);
     tmpy = row(index==i);
@@ -85,13 +86,12 @@ end
 cluster = getclusterinfo(cluster);
 
  outMmesh2 = zeros(size(outMmesh));
- p = [];
- lLimit
+ p = [];%像素点坐标
 for i=1:size(cluster,2)
     length = cluster(i).length;
     if length>(lLimit/gridSize)
         p = [p;cluster(i).data];
-%         figure(11);plot(cluster(i).data(:,1),cluster(i).data(:,2),'.','Color',[rand rand rand]);hold on;axis equal;
+%       figure(11);plot(cluster(i).data(:,1),cluster(i).data(:,2),'.','Color',[rand rand rand]);hold on;axis equal;
     end
 end
 if size(p,1)==0
@@ -109,9 +109,9 @@ zeroIdx = (p(:,1)-1).*size(outMmesh,1)+p(:,2);
     savepointcloud2file(point,strcat(strh1,'~',strh2,'-密度滤波'),0);%密度滤波点云
     savepointcloud2file(point2,strcat(strh1,'~',strh2,'-长度滤波'),0);%长度滤波点云
     
-    %法向量滤波
-    [voxelArray,~]= voxelpoint(point2,gridSize);
-    nv = cellfun(@normnd,voxelArray,'UniformOutput', false);
+%     %法向量滤波
+%     [voxelArray,~]= voxelpoint(point2,gridSize);
+%     nv = cellfun(@normnd,voxelArray,'UniformOutput', false);
     
 %     figure(2);mesh(outMmesh0);axis equal;
 %     figure(3);plot(data(:,1),data(:,2),'r.');axis equal;
